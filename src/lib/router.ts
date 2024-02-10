@@ -2,7 +2,6 @@ import PageNotFound from "../pages/404";
 import { Route } from "../routes";
 import { pathToRegex } from "../utils/path";
 
-// 동적 경로 매핑
 type HistoryChangeEventData = {
   path: string;
   isReplace: boolean;
