@@ -1,3 +1,5 @@
 import App from "./app";
 
-new App(document.getElementById("app")!);
+window.addEventListener("DOMContentLoaded", () => {
+  new App(document.getElementById("app")!);
+});

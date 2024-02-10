@@ -1,4 +1,4 @@
-abstract class Component<P = never, S = never> {
+class Component<P = never, S = never> {
   node: HTMLElement | Element;
   props: P;
   state = {} as S;
