@@ -1,18 +1,26 @@
-import PageNotFound from "../pages/404";
-import { Route } from "../routes";
 import { pathToRegex } from "../utils/path";
+import Component from "./dom";
 
 type HistoryChangeEventData = {
   path: string;
   isReplace: boolean;
 };
 
+type ComponentType = typeof Component<{}, {}>;
+
+export type Route = {
+  path: string;
+  element?: ComponentType;
+  errorElement?: ComponentType;
+  children?: Route[];
+};
+
 class Router {
   root: HTMLElement | Element;
-  routes: Array<Route & { params: string | null }>;
+  routes: Route[];
   constructor(root: HTMLElement | Element, routes: Route[]) {
     this.root = root;
-    this.routes = routes.map((route) => ({ ...route, params: null }));
+    this.routes = routes;
     this.initLoad();
   }
   private initLoad() {
@@ -33,29 +41,46 @@ class Router {
       this.loadRouteComponent(this.currentPath);
     });
   }
-
-  private matchUrlToRoute(path: string) {
-    const findRoute = this.routes.find((route) => {
-      const regex = pathToRegex(route.path);
-      const [pathname, segment] = path.match(regex) || [];
-      if (!pathname) return false;
-      if (pathname && !segment) return true;
-      if (segment.split("/").length > 1) return false;
-      route.params = segment;
-      return true;
+  private matchUrlToRoute(routes: Route[], path: string) {
+    const segments = path.split("/").map((segment) => {
+      if (segment === "") return "/";
+      return segment;
     });
-    return findRoute;
+    if (segments.length <= 2 && segments[1] === "/") {
+      return { Component: routes[0].element, params: undefined };
+    }
+    function traverse(
+      routes: Route[],
+      segments: string[],
+      errorComponent?: ComponentType
+    ) {
+      for (const route of routes) {
+        const { path, children, element, errorElement } = route;
+        const regex = pathToRegex(path);
+        const [pathname, segment] = segments[0].match(regex) || [];
+        if (!pathname) continue;
+        if (segments.length === 1) {
+          return { Component: element, params: segment };
+        } else if (children) {
+          return traverse(
+            children,
+            segments.slice(1),
+            errorElement ?? errorComponent
+          );
+        } else {
+          return { Component: errorComponent, params: undefined };
+        }
+      }
+      return { Component: errorComponent, params: undefined };
+    }
+    return traverse(routes, segments);
   }
   private loadRouteComponent(path: string) {
-    const route = this.matchUrlToRoute(path);
-    if (!route) {
-      new PageNotFound(this.root);
-      return;
-    }
-    if (route.params) {
-      new route.element(this.root, { params: route.params });
+    const { Component, params } = this.matchUrlToRoute(this.routes, path);
+    if (!Component) {
+      throw new Error("no matching component error");
     } else {
-      new route.element(this.root);
+      new Component(this.root, { params });
     }
   }
   // attach "data-link" to attribute of anchor tag when use custom anchor tag

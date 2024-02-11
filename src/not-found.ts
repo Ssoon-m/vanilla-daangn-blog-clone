@@ -1,4 +1,4 @@
-import Component from "../lib/dom";
+import Component from "./lib/dom";
 
 class PageNotFound extends Component {
   protected render(): string {
