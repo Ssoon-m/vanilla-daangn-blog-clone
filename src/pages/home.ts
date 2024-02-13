@@ -14,7 +14,8 @@ class Home extends Component {
   }
   protected setEvent(): void {
     this.attachEvent("button", "click", () => {
-      Router.navigateTo(`/about/${Math.ceil(Math.random() * 10)}`);
+      // Router.replace(`/about/${Math.ceil(Math.random() * 10)}`);
+      Router.pop();
     });
   }
 }

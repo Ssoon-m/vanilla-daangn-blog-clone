@@ -15,6 +15,25 @@ export type Route = {
   children?: Route[];
 };
 
+const navigateTo = ({
+  path,
+  isReplace = false,
+}: {
+  path: string;
+  isReplace?: boolean;
+}) => {
+  const historyChange = new CustomEvent<HistoryChangeEventData>(
+    "historychange",
+    {
+      detail: {
+        path,
+        isReplace,
+      },
+    }
+  );
+  dispatchEvent(historyChange);
+};
+
 class Router {
   root: HTMLElement | Element;
   routes: Route[];
@@ -26,6 +45,7 @@ class Router {
   private initLoad() {
     this.loadRouteComponent(this.currentPath);
     this.customizeAnchorBehavior();
+
     window.addEventListener("historychange", (e: unknown) => {
       const {
         detail: { path, isReplace },
@@ -37,6 +57,7 @@ class Router {
       }
       this.loadRouteComponent(path);
     });
+
     window.addEventListener("popstate", () => {
       this.loadRouteComponent(this.currentPath);
     });
@@ -91,21 +112,19 @@ class Router {
       const anchor = el.closest("a[data-link]") as HTMLAnchorElement;
       if (!anchor) return;
       e.preventDefault();
-      Router.navigateTo(anchor.pathname);
+      Router.push(anchor.pathname);
     });
   }
-  static navigateTo(path: string, isReplace = false) {
-    const historyChange = new CustomEvent<HistoryChangeEventData>(
-      "historychange",
-      {
-        detail: {
-          path,
-          isReplace,
-        },
-      }
-    );
-    dispatchEvent(historyChange);
+  static replace(path: string) {
+    navigateTo({ path, isReplace: true });
   }
+  static push(path: string) {
+    navigateTo({ path });
+  }
+  static pop() {
+    window.history.back();
+  }
+
   get currentPath() {
     return window.location.pathname;
   }
