@@ -51,20 +51,3 @@ select {
   color: inherit;
   letter-spacing: inherit;
 }
-
-p,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  overflow-wrap: break-word;
-}
-
-body {
-  line-height: 1.5;
-  -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeSpeed;
-  font-size: 1.6rem;
-}
