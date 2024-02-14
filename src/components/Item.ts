@@ -5,7 +5,7 @@ type MyProps = {
 };
 
 class Item extends Component<MyProps> {
-  render(): string {
+  protected render(): string {
     return this.props.titleList
       .map(
         (title) =>
