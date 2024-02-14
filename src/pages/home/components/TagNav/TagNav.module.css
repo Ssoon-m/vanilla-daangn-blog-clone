@@ -5,7 +5,6 @@
   border-radius: 2.5rem;
   line-height: 0.875rem;
   font-size: var(--fontSizes-body3);
-  cursor: pointer;
   text-decoration: none;
   background-color: var(--gray-scale-100);
   color: var(--gray-scale-600);

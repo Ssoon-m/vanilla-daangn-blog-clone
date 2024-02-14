@@ -5,6 +5,7 @@ interface TagNavProps {
   tags: {
     text: string;
     active: boolean;
+    value: string;
   }[];
 }
 
@@ -13,9 +14,9 @@ class TagNav extends Component<TagNavProps> {
     return `${this.props.tags
       .map(
         (tag) =>
-          `<div class="${styles["tag"]} ${
+          `<a href='/tags/${tag.value}' data-link class="${styles["tag"]} ${
             tag.active ? styles["active"] : ""
-          }">${tag.text}</div>`
+          }">${tag.text}</a>`
       )
       .join("")}`;
   }

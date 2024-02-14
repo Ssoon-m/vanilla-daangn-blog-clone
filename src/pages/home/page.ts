@@ -5,6 +5,7 @@ import styles from "./home.module.css";
 // import ArticleItem from "./components/ArticleItem/ArticleItem";
 import ArticleSection from "./components/ArticleSection/ArticleSection";
 import TagNav from "./components/TagNav/TagNav";
+import { TAG_MAP } from "@/constans/tag";
 
 interface HomeState {
   articles?: Article[];
@@ -15,6 +16,13 @@ class Home extends Component<never, HomeState> {
     return `
       <div data-component="BaseLayout"></div>
     `;
+  }
+  private extractTags() {
+    if (this.state.articles) {
+      return [...new Set(this.state.articles.map((article) => article.tag))];
+    } else {
+      return [];
+    }
   }
   protected childrenRender(): void {
     const $BaseLayout = document.querySelector("[data-component=BaseLayout]")!;
@@ -35,12 +43,13 @@ class Home extends Component<never, HomeState> {
     });
     const $TagNav = document.querySelector("[data-component=TagNav]")!;
     new TagNav($TagNav, {
-      tags: [
-        { text: "전체", active: true },
-        { text: "문화", active: false },
-        { text: "서비스", active: false },
-        { text: "커리어", active: false },
-      ],
+      tags: [{ text: "전체", active: true, value: "*" }].concat(
+        this.extractTags().map((tag) => ({
+          text: TAG_MAP[tag],
+          active: false,
+          value: tag,
+        }))
+      ),
     });
 
     const $ArticleSection = document.querySelector(

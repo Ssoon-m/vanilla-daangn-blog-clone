@@ -1,11 +1,13 @@
 import { fetchClient } from "@/http/client";
 
+export type category = "culture" | "service" | "career";
+
 export interface Article {
   id: number;
   thumbnail: string;
   title: string;
   description: string;
-  tag: string;
+  tag: category;
 }
 
 export const getArticleList = () => {
