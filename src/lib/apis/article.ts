@@ -5,7 +5,7 @@ export interface Article {
   thumbnail: string;
   title: string;
   description: string;
-  tags: string[];
+  tag: string;
 }
 
 export const getArticleList = () => {

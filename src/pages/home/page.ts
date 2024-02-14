@@ -2,6 +2,8 @@ import Component from "@/lib/dom";
 import { BaseLayout } from "../layouts";
 import { type Article, getArticleList } from "@/lib/apis/article";
 import styles from "./home.module.css";
+// import ArticleItem from "./components/ArticleItem/ArticleItem";
+import ArticleSection from "./components/ArticleSection/ArticleSection";
 
 interface HomeState {
   articles?: Article[];
@@ -14,25 +16,25 @@ class Home extends Component<never, HomeState> {
     `;
   }
   protected childrenRender(): void {
-    const $el = document.querySelector("[data-component=BaseLayout]")!;
-    new BaseLayout($el, {
+    const $BaseLayout = document.querySelector("[data-component=BaseLayout]")!;
+    new BaseLayout($BaseLayout, {
       children: `
       <a data-link href="" class=${styles["main-anchor"]}>
         <div class=${styles["main-image-container"]}>
-          <img src="${this.state.articles?.[0].thumbnail}"></img>
+          <img src="${this.state.articles?.[0].thumbnail}"/>
         </div>
         <div class=${styles["main-text"]}>
           <h2>${this.state.articles?.[0].title}</h2>
           <p>${this.state.articles?.[0].description}</p>
         </div>
       </a>
-      <section class=${styles["article-section"]}>
-        ${this.state.articles
-          ?.map((article) => `<li>${article.title}</li>`)
-          .join("")}
-      </section>
+      <section class=${styles["article-section"]} data-component="ArticleSection"></section>
       `,
     });
+    const $ArticleSection = document.querySelector(
+      "[data-component=ArticleSection]"
+    )!;
+    new ArticleSection($ArticleSection, { articles: this.state.articles });
   }
   protected mounted(): void {
     getArticleList().then(({ articles }) => {
