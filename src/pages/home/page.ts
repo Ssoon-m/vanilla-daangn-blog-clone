@@ -4,6 +4,7 @@ import { type Article, getArticleList } from "@/lib/apis/article";
 import styles from "./home.module.css";
 // import ArticleItem from "./components/ArticleItem/ArticleItem";
 import ArticleSection from "./components/ArticleSection/ArticleSection";
+import TagNav from "./components/TagNav/TagNav";
 
 interface HomeState {
   articles?: Article[];
@@ -28,9 +29,20 @@ class Home extends Component<never, HomeState> {
           <p>${this.state.articles?.[0].description}</p>
         </div>
       </a>
+      <div class=${styles["tag-nav-container"]} data-component="TagNav"></div>
       <section class=${styles["article-section"]} data-component="ArticleSection"></section>
       `,
     });
+    const $TagNav = document.querySelector("[data-component=TagNav]")!;
+    new TagNav($TagNav, {
+      tags: [
+        { text: "전체", active: true },
+        { text: "문화", active: false },
+        { text: "서비스", active: false },
+        { text: "커리어", active: false },
+      ],
+    });
+
     const $ArticleSection = document.querySelector(
       "[data-component=ArticleSection]"
     )!;

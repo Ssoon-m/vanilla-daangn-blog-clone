@@ -31,6 +31,12 @@
   line-height: var(--lineHeights-body2);
 }
 
+.tag-nav-container {
+  display: flex;
+  gap: 0.5rem;
+  margin: 0px;
+}
+
 .article-section {
   width: 100%;
   display: grid;
@@ -50,5 +56,11 @@
 @media (min-width: 880px) {
   .article-section {
     grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 992px) {
+  .tag-nav-container {
+    margin: 0px 3rem;
   }
 }

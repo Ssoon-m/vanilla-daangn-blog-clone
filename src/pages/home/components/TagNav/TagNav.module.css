@@ -1,0 +1,24 @@
+.tag {
+  padding: 0.75rem 1.125rem;
+  margin-right: 0.5rem;
+  border: none;
+  border-radius: 2.5rem;
+  line-height: 0.875rem;
+  font-size: var(--fontSizes-body3);
+  cursor: pointer;
+  text-decoration: none;
+  background-color: var(--gray-scale-100);
+  color: var(--gray-scale-600);
+}
+
+.tag:hover {
+  background-color: var(--gray-scale-900);
+  color: var(--gray-scale-00);
+  font-weight: bold;
+}
+
+.active {
+  background-color: var(--gray-scale-900);
+  color: var(--gray-scale-00);
+  font-weight: bold;
+}

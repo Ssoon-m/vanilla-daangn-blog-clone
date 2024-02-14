@@ -4,6 +4,14 @@
   min-height: 20rem;
 }
 
+.article-container:hover {
+  transform: translateY(-8px);
+}
+
+.article-container:hover h3 {
+  color: var(--gray-scale-700);
+}
+
 .article-container h3 {
   width: 100%;
   margin-top: 1.25rem;
