@@ -22,3 +22,11 @@
   color: var(--gray-scale-00);
   font-weight: bold;
 }
+
+@media (min-width: 880px) {
+  .tag {
+    margin-right: 0.625rem;
+    padding: 0.875rem 1.25rem;
+    font-size: var(--fontSizes-subtitle4);
+  }
+}

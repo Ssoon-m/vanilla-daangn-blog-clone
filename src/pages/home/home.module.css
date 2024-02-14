@@ -34,7 +34,6 @@
 
 .tag-nav-container {
   display: flex;
-  gap: 0.5rem;
   margin: 0px;
 }
 
@@ -51,6 +50,10 @@
 @media (min-width: 576px) {
   .main-anchor {
     display: flex;
+  }
+  .main-image-container {
+    border-radius: 2.5rem;
+    -webkit-border-radius: 2.5rem;
   }
 }
 

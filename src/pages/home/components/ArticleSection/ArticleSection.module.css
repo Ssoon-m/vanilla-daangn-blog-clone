@@ -68,6 +68,12 @@
   }
 }
 
+@media (min-width: 1096px) {
+  .article-container h3 {
+    font-size: var(--fontSizes-subtitle2);
+  }
+}
+
 @media (min-width: 1200px) {
   .article-container {
     width: 30rem;
