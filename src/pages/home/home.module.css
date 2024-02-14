@@ -17,6 +17,7 @@
 }
 .main-text {
   margin-top: 2.75rem;
+  text-align: center;
 }
 .main-text > h2 {
   font-size: var(--fontSizes-subtitle2);
@@ -62,5 +63,16 @@
 @media (min-width: 992px) {
   .tag-nav-container {
     margin: 0px 3rem;
+  }
+}
+@media (min-width: 1096px) {
+  .main-text > h2 {
+    font-size: var(--fontSizes-subtitle1);
+    line-height: var(--lineHeights-subtitle1);
+  }
+
+  .main-text > p {
+    font-size: var(--fontSizes-subtitle4);
+    line-height: var(--lineHeights-subtitle4);
   }
 }
