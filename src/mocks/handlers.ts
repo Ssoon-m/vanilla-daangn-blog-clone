@@ -1,7 +1,8 @@
 import { http, HttpResponse } from "msw";
+import { ARTICLE_LIST } from "./data/article";
 
 export const handlers = [
-  http.get("/user", ({ request }) => {
-    return HttpResponse.json({ name: "John" });
+  http.get("/article", ({ request }) => {
+    return HttpResponse.json({ article: ARTICLE_LIST });
   }),
 ];
