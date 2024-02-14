@@ -1,0 +1,7 @@
+body {
+  font-family: var(--fonts-system);
+  text-rendering: optimizelegibility;
+  -webkit-font-smoothing: antialiased;
+  color: var(--gray-scale-900);
+  accent-color: var(--primary-500);
+}
