@@ -1,5 +1,5 @@
-import Component from "../lib/dom";
-import Router from "../lib/router";
+import Component from "@/lib/dom";
+import Router from "@/lib/router";
 
 class Home extends Component {
   protected render(): string {

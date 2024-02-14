@@ -2,7 +2,7 @@ import PageNotFound from "../not-found";
 import About from "../pages/about";
 import Category from "../pages/category";
 import Etc from "../pages/etc";
-import Home from "../pages/home";
+import Home from "@/pages/home/page";
 import type { Route } from "../lib/router";
 import PageNotFoundV2 from "../not-found-v2";
 
