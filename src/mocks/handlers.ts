@@ -3,6 +3,6 @@ import { ARTICLE_LIST } from "./data/article";
 
 export const handlers = [
   http.get("/article", ({ request }) => {
-    return HttpResponse.json({ article: ARTICLE_LIST });
+    return HttpResponse.json({ articles: ARTICLE_LIST });
   }),
 ];

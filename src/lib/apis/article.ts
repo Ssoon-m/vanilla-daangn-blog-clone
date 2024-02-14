@@ -9,5 +9,7 @@ export interface Article {
 }
 
 export const getArticleList = () => {
-  return fetchClient.get<Article[]>("/article").then((res) => res.data);
+  return fetchClient
+    .get<{ articles: Article[] }>("/article")
+    .then((res) => res.data);
 };
