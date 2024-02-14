@@ -10,7 +10,7 @@ class Home extends Component {
   protected mounted(): void {
     const $el = document.querySelector("[data-component=BaseLayout]")!;
     new BaseLayout($el, {
-      children: `<div>contentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontent</div>`,
+      children: `<div>content??</div>`,
     });
   }
 }

@@ -2,6 +2,7 @@ import Component from "@/lib/dom";
 import Router from "@/lib/router";
 import AppHeader from "./components/AppHeader";
 import AppFooter from "./components/AppFooter";
+import styles from "./BaseLayout.module.css";
 
 interface BaseLayoutProps {
   children: string;
@@ -11,7 +12,7 @@ class BaseLayout extends Component<BaseLayoutProps> {
   protected render(): string {
     return `  
       <div data-component="AppHeader"></div>
-      <main>${this.props.children}</main>
+      <main class=${styles["main"]}>${this.props.children}</main>
       <div data-component="AppFooter"></div>
     `;
   }
