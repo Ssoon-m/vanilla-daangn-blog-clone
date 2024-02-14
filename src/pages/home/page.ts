@@ -1,5 +1,6 @@
 import Component from "@/lib/dom";
 import { BaseLayout } from "../layouts";
+import { fetchClient } from "@/http/client";
 
 class Home extends Component {
   protected render(): string {
@@ -12,6 +13,7 @@ class Home extends Component {
     new BaseLayout($el, {
       children: `<div>content??</div>`,
     });
+    fetchClient.get("/user").then(console.log);
   }
 }
 
