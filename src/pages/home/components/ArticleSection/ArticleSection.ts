@@ -1,7 +1,7 @@
 import { Article } from "@/lib/apis/article";
 import Component from "@/lib/dom";
 import styles from "./ArticleSection.module.css";
-import { TAG_MAP } from "@/constans/tag";
+import { CATEGORY_MAP } from "@/constans/category";
 
 interface ArticleSectionProps {
   articles?: Article[];
@@ -24,8 +24,8 @@ class ArticleSection extends Component<ArticleSectionProps> {
                 ${article.description}
               </p>
             </a>
-            <a class=${styles["article-tag"]}>
-              ${TAG_MAP[article.tag]}
+            <a class=${styles["article-category"]}>
+              ${CATEGORY_MAP[article.category]}
             </a>
           </div>`
       )

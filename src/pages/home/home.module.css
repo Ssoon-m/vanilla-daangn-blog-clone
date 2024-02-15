@@ -41,7 +41,7 @@
   justify-content: center;
   margin-top: 2.75rem;
 }
-.tag-nav-container {
+.category-nav-container {
   display: flex;
   margin: 0px;
 }
@@ -63,7 +63,7 @@
 }
 
 @media (min-width: 992px) {
-  .tag-nav-container {
+  .category-nav-container {
     margin: 0px 3rem;
   }
 }

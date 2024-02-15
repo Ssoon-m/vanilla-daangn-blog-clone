@@ -1,11 +1,10 @@
 import Component from "@/lib/dom";
 import { BaseLayout } from "../layouts";
-import { type Article, getArticleList, category } from "@/lib/apis/article";
+import { type Article, getArticleList } from "@/lib/apis/article";
 import styles from "./home.module.css";
-// import ArticleItem from "./components/ArticleItem/ArticleItem";
 import ArticleSection from "./components/ArticleSection/ArticleSection";
-import TagNav from "./components/TagNav/TagNav";
-import { TAG_MAP } from "@/constans/tag";
+import CategoryNav from "./components/CategoryNav/CategoryNav";
+import { CATEGORY_MAP } from "@/constans/category";
 import Router from "@/lib/router";
 
 interface HomeState {
@@ -34,14 +33,16 @@ class Home extends Component<never, HomeState> {
         <p>${this.state.articles?.[0].description}</p>
       </div>
     </a>
-    <div class=${styles["tag-nav-container"]} data-component="TagNav"></div>
+    <div class=${styles["category-nav-container"]} data-component="CategoryNav"></div>
     <section class=${styles["article-section"]} data-component="ArticleSection"></section>`
       }
       `,
     });
     if (!this.state.isLoading) {
-      const $TagNav = document.querySelector("[data-component=TagNav]")!;
-      new TagNav($TagNav, {
+      const $CategoryNav = document.querySelector(
+        "[data-component=CategoryNav]"
+      )!;
+      new CategoryNav($CategoryNav, {
         tags: this.state.tags,
       });
 
@@ -54,7 +55,6 @@ class Home extends Component<never, HomeState> {
   protected mounted(): void {
     this.setState({ isLoading: true });
     getArticleList().then(({ articles }) => {
-      console.log("isLadfdaf");
       const _articles = this.getArticleListByTag(articles);
       const tags = this.getTagsByArticle(articles);
       this.setState({ articles: _articles, tags, isLoading: false });
@@ -62,25 +62,25 @@ class Home extends Component<never, HomeState> {
   }
   private getArticleListByTag(articles: Article[]) {
     const search = Router.searchParams();
-    const tag = search.get("tags");
-    if (tag) {
-      return articles.filter((article) => article.tag === tag);
+    const category = search.get("category");
+    if (category) {
+      return articles.filter((article) => article.category === category);
     } else {
       return articles;
     }
   }
   private getTagsByArticle(articles: Article[]) {
-    const tags = [
+    const categories = [
       "*",
-      ...new Set(articles.map((article) => article.tag)),
+      ...new Set(articles.map((article) => article.category)),
     ] as const;
     const search = Router.searchParams();
-    const _tag = search.get("tags");
+    const _category = search.get("category");
 
-    return tags.map((tag) => ({
-      text: tag === "*" ? "전체" : TAG_MAP[tag],
-      active: !_tag && tag === "*" ? true : tag === _tag,
-      value: tag,
+    return categories.map((category) => ({
+      text: category === "*" ? "전체" : CATEGORY_MAP[category],
+      active: !_category && category === "*" ? true : category === _category,
+      value: category,
     }));
   }
 }

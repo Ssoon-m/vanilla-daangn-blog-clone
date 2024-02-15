@@ -1,4 +1,4 @@
-.tag {
+.category {
   padding: 0.75rem 1.125rem;
   margin-right: 0.5rem;
   border: none;
@@ -12,7 +12,7 @@
   cursor: pointer;
 }
 
-.tag:hover {
+.category:hover {
   background-color: var(--gray-scale-900);
   color: var(--gray-scale-00);
   font-weight: bold;
@@ -25,7 +25,7 @@
 }
 
 @media (min-width: 880px) {
-  .tag {
+  .category {
     margin-right: 0.625rem;
     padding: 0.875rem 1.25rem;
     font-size: var(--fontSizes-subtitle4);

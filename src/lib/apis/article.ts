@@ -7,7 +7,7 @@ export interface Article {
   thumbnail: string;
   title: string;
   description: string;
-  tag: category;
+  category: category;
 }
 
 export const getArticleList = () => {

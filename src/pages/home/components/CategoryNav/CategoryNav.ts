@@ -1,8 +1,8 @@
 import Component from "@/lib/dom";
-import styles from "./TagNav.module.css";
+import styles from "./CategoryNav.module.css";
 import Router from "@/lib/router";
 
-interface TagNavProps {
+interface CategoryNavProps {
   tags?: {
     text: string;
     active: boolean;
@@ -10,12 +10,12 @@ interface TagNavProps {
   }[];
 }
 
-class TagNav extends Component<TagNavProps> {
+class CategoryNav extends Component<CategoryNavProps> {
   protected render(): string {
     return `${this.props.tags
       ?.map(
         (tag) =>
-          `<div id=${tag.value} class="${styles["tag"]} ${
+          `<div id=${tag.value} class="${styles["category"]} ${
             tag.active ? styles["active"] : ""
           }">${tag.text}</div>`
       )
@@ -24,9 +24,9 @@ class TagNav extends Component<TagNavProps> {
   protected setEvent(): void {
     this.attachEvent("div", "click", (event) => {
       const $el = event.target as HTMLElement;
-      Router.push($el.id === "*" ? "/" : `/?tags=${$el.id}`);
+      Router.push($el.id === "*" ? "/" : `/?category=${$el.id}`);
     });
   }
 }
 
-export default TagNav;
+export default CategoryNav;

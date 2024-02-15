@@ -31,7 +31,7 @@
   overflow: hidden;
 }
 
-.article-tag {
+.article-category {
   display: inline-block;
   width: fit-content;
   padding: 0.25rem 0.625rem;
@@ -49,7 +49,7 @@
     width: 23.75rem;
     height: 22.5rem;
   }
-  .article-tag {
+  .article-category {
     margin-top: 1.5rem;
   }
   .article-container p {
@@ -62,7 +62,7 @@
     width: 27.5rem;
     height: 26.25rem;
   }
-  .article-tag {
+  .article-category {
     font-size: var(--fontSizes-caption1);
     line-height: var(--lineHeights-caption1);
   }
