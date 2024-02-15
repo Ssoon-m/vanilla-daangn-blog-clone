@@ -64,11 +64,13 @@ class ArchivePage extends Component<ArchivePageProps, ArchivePageState> {
   }
   protected mounted(): void {
     this.setState({ isLoading: true });
-    getArticle(Number(this.props.params))
-      .then(({ article }) => {
-        this.setState({ article });
-      })
-      .finally(() => this.setState({ isLoading: false }));
+    if (this.props.params) {
+      getArticle(Number(this.props.params))
+        .then(({ article }) => {
+          this.setState({ article });
+        })
+        .finally(() => this.setState({ isLoading: false }));
+    }
   }
 }
 
