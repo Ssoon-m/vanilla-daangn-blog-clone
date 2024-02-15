@@ -34,8 +34,6 @@ class ArchivePage extends Component<ArchivePageProps, ArchivePageState> {
           <div class="prose">
             ${this.state.article?.contents}
           </div>
-          <div>
-          </div>
           <div class=${styles["author-container"]}>
             <img src="${this.state.article?.author.thumbnail}"/>
             <div class=${styles["author-text-wrapper"]}>
@@ -57,15 +55,8 @@ class ArchivePage extends Component<ArchivePageProps, ArchivePageState> {
   }
   protected mounted(): void {
     getArticle(Number(this.props.params)).then(({ article }) => {
-      console.log("article", article);
       this.setState({ article });
     });
-    // this.setState({ isLoading: true });
-    // getArticleList().then(({ articles }) => {
-    //   const _articles = this.getArticleListByTag(articles);
-    //   const tags = this.getTagsByArticle(articles);
-    //   this.setState({ articles: _articles, tags, isLoading: false });
-    // });
   }
 }
 
