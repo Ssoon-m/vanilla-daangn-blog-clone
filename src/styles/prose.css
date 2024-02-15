@@ -1,0 +1,73 @@
+.prose {
+  display: flex;
+  flex-flow: row nowrap;
+  flex-direction: column;
+  align-items: center;
+  height: auto;
+  overflow: auto;
+}
+
+.prose a {
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.prose p {
+  width: 100%;
+  min-height: 1rem;
+  margin-bottom: 0.75rem;
+  line-height: 1.75rem;
+  letter-spacing: 0rem;
+  font-size: 1.0625rem;
+  text-align: left;
+  word-break: keep-all;
+}
+
+.prose p strong {
+  font-weight: bold;
+}
+
+.prose h3 {
+  padding-top: 1.5rem;
+  padding-bottom: 0.875rem;
+  line-height: 150%;
+  font-size: 1.375rem;
+  font-weight: bold;
+}
+
+.prose section:has(svg) {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin: 1rem 0;
+  text-align: center;
+}
+
+.prose section {
+  width: 100%;
+  margin-bottom: 0.625rem;
+  font-size: var(--fontSizes-body2);
+  line-height: 1.75rem;
+  letter-spacing: 0.00625rem;
+  color: var(--gray-scale-900);
+}
+
+@media (min-width: 576px) {
+  .prose p {
+    font-size: 1.0625rem;
+    line-height: 1.75rem;
+    letter-spacing: 0.00625rem;
+  }
+  .prose h3 {
+    font-size: 1.5625rem;
+  }
+  .prose section {
+    font-size: var(--fontSizes-body1);
+    line-height: 1.75rem;
+    letter-spacing: 0.025rem;
+  }
+  .prose section:has(svg) {
+    margin: 2.25rem 0;
+  }
+}
