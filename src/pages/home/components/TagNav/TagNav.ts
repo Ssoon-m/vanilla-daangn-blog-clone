@@ -1,8 +1,9 @@
 import Component from "@/lib/dom";
 import styles from "./TagNav.module.css";
+import Router from "@/lib/router";
 
 interface TagNavProps {
-  tags: {
+  tags?: {
     text: string;
     active: boolean;
     value: string;
@@ -12,13 +13,19 @@ interface TagNavProps {
 class TagNav extends Component<TagNavProps> {
   protected render(): string {
     return `${this.props.tags
-      .map(
+      ?.map(
         (tag) =>
-          `<a href='/tags/${tag.value}' data-link class="${styles["tag"]} ${
+          `<div id=${tag.value} class="${styles["tag"]} ${
             tag.active ? styles["active"] : ""
-          }">${tag.text}</a>`
+          }">${tag.text}</div>`
       )
       .join("")}`;
+  }
+  protected setEvent(): void {
+    this.attachEvent("div", "click", (event) => {
+      const $el = event.target as HTMLElement;
+      Router.push($el.id === "*" ? "/" : `/?tags=${$el.id}`);
+    });
   }
 }
 

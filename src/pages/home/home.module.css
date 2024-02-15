@@ -32,11 +32,6 @@
   line-height: var(--lineHeights-body2);
 }
 
-.tag-nav-container {
-  display: flex;
-  margin: 0px;
-}
-
 .article-section {
   width: 100%;
   display: grid;
@@ -45,6 +40,10 @@
   justify-items: center;
   justify-content: center;
   margin-top: 2.75rem;
+}
+.tag-nav-container {
+  display: flex;
+  margin: 0px;
 }
 
 @media (min-width: 576px) {
@@ -68,6 +67,7 @@
     margin: 0px 3rem;
   }
 }
+
 @media (min-width: 1096px) {
   .main-text > h2 {
     font-size: var(--fontSizes-subtitle1);
