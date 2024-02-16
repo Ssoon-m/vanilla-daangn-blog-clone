@@ -8,6 +8,7 @@ import { CATEGORY_MAP } from "@/constans/category";
 import Router from "@/lib/router";
 
 interface HomeState {
+  latestArticle: Article;
   articles?: Article[];
   tags: { text: string; active: boolean; value: string }[];
   isLoading: boolean;
@@ -24,19 +25,20 @@ class Home extends Component<never, HomeState> {
       children: `${
         this.state.isLoading
           ? "<div>loading...</div>"
-          : `<a data-link href="" class=${styles["main-anchor"]}>
-      <div class=${styles["main-image-container"]}>
-        <img src="${this.state.articles?.[0].thumbnail}"/>
-      </div>
-      <div class=${styles["main-text"]}>
-        <h2>${this.state.articles?.[0].title}</h2>
-        <p>${this.state.articles?.[0].description}</p>
-      </div>
-    </a>
-    <div class=${styles["category-nav-container"]} data-component="CategoryNav"></div>
-    <section class=${styles["article-section"]} data-component="ArticleSection"></section>`
-      }
-      `,
+          : `
+          <a data-link href="/archive/${this.state.latestArticle?.id}" class=${styles["main-anchor"]}>
+            <div class=${styles["main-image-container"]}>
+              <img src="${this.state.latestArticle?.thumbnail}"/>
+            </div>
+            <div class=${styles["main-text"]}>
+              <h2>${this.state.latestArticle?.title}</h2>
+              <p>${this.state.latestArticle?.description}</p>
+            </div>        
+          </a>
+          <div class=${styles["category-nav-container"]} data-component="CategoryNav"></div>
+          <section class=${styles["article-section"]} data-component="ArticleSection"></section>
+        `
+      }`,
     });
     if (!this.state.isLoading) {
       const $CategoryNav = document.querySelector(
@@ -57,7 +59,12 @@ class Home extends Component<never, HomeState> {
     getArticleList().then(({ articles }) => {
       const _articles = this.getArticleListByTag(articles);
       const tags = this.getTagsByArticle(articles);
-      this.setState({ articles: _articles, tags, isLoading: false });
+      this.setState({
+        articles: _articles,
+        latestArticle: articles[0],
+        tags,
+        isLoading: false,
+      });
     });
   }
   private getArticleListByTag(articles: Article[]) {
