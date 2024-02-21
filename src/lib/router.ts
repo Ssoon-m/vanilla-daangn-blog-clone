@@ -116,10 +116,9 @@ class Router {
   private customizeAnchorBehavior() {
     window.addEventListener("click", (e) => {
       const el = e.target as HTMLElement;
-      const anchor = el.closest("a[data-link]");
-      if (!(anchor instanceof HTMLAnchorElement)) return;
+      if (!(el instanceof HTMLAnchorElement)) return;
+      const anchor = el.closest("a[data-link]") as HTMLAnchorElement;
       if (!anchor) return;
-      e.preventDefault();
       Router.push(anchor.pathname + anchor.search);
     });
   }
