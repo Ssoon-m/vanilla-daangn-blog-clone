@@ -1,0 +1,33 @@
+.category {
+  padding: 0.75rem 1.125rem;
+  margin-right: 0.5rem;
+  border: none;
+  width: fit-content;
+  border-radius: 2.5rem;
+  line-height: 0.875rem;
+  font-size: var(--fontSizes-body3);
+  text-decoration: none;
+  background-color: var(--gray-scale-100);
+  color: var(--gray-scale-600);
+  cursor: pointer;
+}
+
+.category:hover {
+  background-color: var(--gray-scale-900);
+  color: var(--gray-scale-00);
+  font-weight: bold;
+}
+
+.active {
+  background-color: var(--gray-scale-900);
+  color: var(--gray-scale-00);
+  font-weight: bold;
+}
+
+@media (min-width: 880px) {
+  .category {
+    margin-right: 0.625rem;
+    padding: 0.875rem 1.25rem;
+    font-size: var(--fontSizes-subtitle4);
+  }
+}
