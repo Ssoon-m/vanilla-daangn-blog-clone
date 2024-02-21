@@ -1,6 +1,7 @@
 ## 바닐라js로 당근 블로그 클론코딩
 
 VanillaJS를 이용해서 spa를 구현하고 <https://about.daangn.com/blog/> 처럼 만들어봅니다.
+(Class를 이용하여 구현)
 
 ## 목적
 
@@ -15,4 +16,4 @@ VanillaJS를 이용해서 spa를 구현하고 <https://about.daangn.com/blog/> �
 
 - [x] 번들링 도구 활용
 - [x] 라우터 직접 구현해보기
-- [ ] 구현한 라우터를 이용해 SPA 개발해보기
+- [x] 구현한 라우터를 이용해 SPA 개발해보기
