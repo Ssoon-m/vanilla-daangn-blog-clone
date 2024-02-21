@@ -9,17 +9,11 @@ class Component<P = never, S = never> {
   }
   private bootStrap() {
     this.setup?.();
-    this.renderInitDOM();
-  }
-  private renderInitDOM() {
-    this.node.innerHTML = this.render();
-    this.childrenRender?.();
-    this.mounted?.();
-    this.setEvent?.();
+    this.renderDOM();
   }
   private renderDOM() {
     this.node.innerHTML = this.render();
-    this.childrenRender?.();
+    this.mounted?.();
     this.setEvent?.();
   }
   protected setEvent?(): void;
@@ -28,7 +22,7 @@ class Component<P = never, S = never> {
   protected render() {
     return "";
   }
-  protected childrenRender?(): void;
+
   protected attachEvent(
     $el: string,
     eventType: string,

@@ -3,8 +3,7 @@ import Component from "./dom";
 
 type HistoryChangeEventData = {
   path: string;
-  search: string;
-  isReplace?: boolean;
+  isReplace: boolean;
 };
 
 type ComponentType = typeof Component<{}, {}>;
@@ -18,15 +17,16 @@ export type Route = {
 
 const navigateTo = ({
   path,
-  search,
   isReplace = false,
-}: HistoryChangeEventData) => {
+}: {
+  path: string;
+  isReplace?: boolean;
+}) => {
   const historyChange = new CustomEvent<HistoryChangeEventData>(
     "historychange",
     {
       detail: {
         path,
-        search,
         isReplace,
       },
     }
@@ -43,31 +43,23 @@ class Router {
     this.initLoad();
   }
   private initLoad() {
-    this.loadRouteComponent(Router.currentPath());
+    this.loadRouteComponent(this.currentPath);
     this.customizeAnchorBehavior();
 
     window.addEventListener("historychange", (e: unknown) => {
       const {
-        detail: { path, search, isReplace },
+        detail: { path, isReplace },
       } = e as CustomEvent<HistoryChangeEventData>;
       if (isReplace) {
-        window.history.replaceState({}, "", path + search);
+        window.history.replaceState({}, "", path);
       } else {
-        window.history.pushState(
-          {
-            scrollTop:
-              document.body.scrollHeight ||
-              document.documentElement.scrollHeight,
-          },
-          "",
-          path + search
-        );
+        window.history.pushState({}, "", path);
       }
       this.loadRouteComponent(path);
     });
 
     window.addEventListener("popstate", () => {
-      this.loadRouteComponent(Router.currentPath());
+      this.loadRouteComponent(this.currentPath);
     });
   }
   private matchUrlToRoute(routes: Route[], path: string) {
@@ -119,25 +111,21 @@ class Router {
       if (!(el instanceof HTMLAnchorElement)) return;
       const anchor = el.closest("a[data-link]") as HTMLAnchorElement;
       if (!anchor) return;
-      Router.push(anchor.pathname + anchor.search);
+      e.preventDefault();
+      Router.push(anchor.pathname);
     });
   }
   static replace(path: string) {
-    const { pathname, search } = new URL(window.location.origin + path);
-    navigateTo({ path: pathname, search, isReplace: true });
+    navigateTo({ path, isReplace: true });
   }
   static push(path: string) {
-    const { pathname, search } = new URL(window.location.origin + path);
-    navigateTo({ path: pathname, search });
+    navigateTo({ path });
   }
   static pop() {
     window.history.back();
   }
-  static searchParams() {
-    const { search } = new URL(window.location.href);
-    return new URLSearchParams(search);
-  }
-  static currentPath() {
+
+  get currentPath() {
     return window.location.pathname;
   }
 }
