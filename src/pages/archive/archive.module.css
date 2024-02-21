@@ -1,0 +1,112 @@
+.article-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 2.0625rem;
+}
+.article-title {
+  font-size: var(--fontSizes-subtitle1);
+  font-weight: bold;
+  margin-bottom: 0.75rem;
+}
+.article-meta {
+  display: flex;
+  color: var(--gray-scale-600);
+}
+
+.article-thumbnail-container {
+  margin: 0 auto;
+  max-width: 900px;
+  max-height: 506.25px;
+  width: 100%;
+  border-radius: 0.9375rem;
+  margin-bottom: 1.5rem;
+  opacity: 0.99;
+  overflow: hidden;
+}
+
+.article-contens-container {
+  position: relative;
+  box-sizing: border-box;
+  max-width: 56.25rem;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.author-container {
+  display: flex;
+  align-items: center;
+  margin: 3.5rem 0;
+}
+
+.author-container > img {
+  width: 3.125rem;
+  height: 3.125rem;
+  border-radius: 50%;
+  border: 1px solid var(--gray-scale-100);
+}
+.author-container > div {
+  display: flex;
+  flex-direction: column;
+  margin-left: 0.75rem;
+  font-size: var(--fontSizes-body2);
+}
+.author-container > div > h3 {
+  margin-bottom: 0.25rem;
+  font-weight: 700;
+  font-size: var(--fontSizes-subtitle4);
+}
+
+.tag-section {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  width: 100%;
+  padding: 0 0.5rem;
+  color: var(--gray-scale-600);
+  font-size: var(--fontSizes-body2);
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  box-sizing: border-box;
+  width: max-content;
+  max-width: 75rem;
+  margin: 0 auto;
+  margin-top: 4.125rem;
+  padding-left: 5.25rem;
+  padding-right: 5.25rem;
+}
+
+.button-container > a {
+  width: fit-content;
+  padding: 1rem 1.25rem;
+  border: none;
+  border-radius: 2.5rem;
+  background-color: var(--gray-scale-100);
+  color: var(--gray-scale-900);
+  font-size: var(--fontSizes-body1);
+  font-weight: bold;
+  text-decoration: none;
+}
+
+@media (min-width: 576px) {
+  .article-header {
+    margin-bottom: 4.125rem;
+  }
+  .article-thumbnail-container {
+    border-radius: 1.875rem;
+    margin-bottom: 5.5rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .article-title {
+    font-size: var(--fontSizes-heading4);
+  }
+  .article-contens-container {
+    padding-left: 5.25rem;
+    padding-right: 5.25rem;
+  }
+}

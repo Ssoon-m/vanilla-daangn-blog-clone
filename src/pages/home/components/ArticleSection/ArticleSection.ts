@@ -13,7 +13,7 @@ class ArticleSection extends Component<ArticleSectionProps> {
       ?.map(
         (article) =>
           `<div class=${styles["article-container"]}>
-            <a href="" data-link>
+            <a href="/archive/${article.id}" data-link>
               <div class=${styles["article-image"]}>
                 <img src="${article.thumbnail}" alt=${article.title}/>
               </div>
