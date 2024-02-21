@@ -1,6 +1,7 @@
 import App from "./app";
+import { initMocks } from "./mocks";
 import "./styles/global.css";
 
 window.addEventListener("DOMContentLoaded", () => {
-  new App(document.getElementById("app")!);
+  initMocks().then(() => new App(document.getElementById("app")!));
 });
